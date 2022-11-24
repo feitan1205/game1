@@ -2,6 +2,10 @@
 #include "meteo.h"
 #include "main.h"
 
+namespace{
+	constexpr float kSpeed = 3.0;
+}
+
 //隕石データの初期化
 Meteo::Meteo() {
 
@@ -48,15 +52,15 @@ void Meteo::SetVec() {
 //隕石の画像データ設定関数
 void Meteo::SetImage() {
 
-	handle = LoadGraph("data/yonetu.png");								//handleに隕石の画像のデータを取得する
+	handle = LoadGraph("data/virus.png");								//handleに隕石の画像のデータを取得する
 
 }
 
 //隕石の動作設定関数
 void Meteo::MoveMeteo() {
 
-	posX -= vecX;														//X座標をベクトル分移動させる
-	posY += vecY;														//Y座標をベクトル分移動させる
+	posX -= vecX * kSpeed;														//X座標をベクトル分移動させる
+	posY += vecY * kSpeed;														//Y座標をベクトル分移動させる
 
 }
 

@@ -38,7 +38,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	{
 		return -1;																				// エラーが起きたら直ちに終了
 	}
-
+	
 
 	//スタート画面の実装
 	while (ProcessMessage() == 0) {
@@ -69,6 +69,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	int mouseDetection[3];																		//マウスの入力検知専用変数
 	int clickcount = 0;																			//処理をカウントする(mouseDetection用)変数
 
+	int backscreenhandle = 0;
+
+	backscreenhandle = LoadGraph("data/backscreen.jpg");
 
 																								//マウスの入力検知専用変数の初期化
 	for (int i = 0; i < 3; i++) {
@@ -91,6 +94,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		if (CheckHitKey(KEY_INPUT_ESCAPE))break;												//ESCキーが押されていると実行しない
 
 		ClearDrawScreen();																		//画面をクリア
+		
+		DrawExtendGraph(0, 0, kWindowWidth, kWindowHeight, backscreenhandle, false);
 		
 																								//隕石の処理
 		for (int i = 0; i < 4; i++) {
@@ -145,12 +150,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			if (mouseDetection[2] == 0 && mouseDetection[0] == 1) {								//上記のクリックされた瞬間の処理と同様
 				for (int i = 0; i < 4; i++) {													//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 					if (CheckHit(aim1, meteo, i) == true) {										//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-						meteo[i].Delete();
+						meteo[i].Delete();														//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						meteo[i].SetPos();														//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						meteo[i].SetVec();														//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						BreakCount++;															//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						break;																	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-					}
+					}																			
 				}
 			}
 		}
@@ -164,6 +169,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		if (CheckHitKey(KEY_INPUT_ESCAPE))break;												//ESCキーで終了
 		if (BreakCount == 20)break;																//撃破数が20で終了
+
+
 	}
 
 	while (ProcessMessage() == 0) {

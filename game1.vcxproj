@@ -154,11 +154,17 @@
     <ClCompile Include="aim.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="meteo.cpp" />
+    <ClCompile Include="SceneBase.cpp" />
+    <ClCompile Include="SceneMain.cpp" />
+    <ClCompile Include="SceneTitle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aim.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="meteo.h" />
+    <ClInclude Include="SceneBase.h" />
+    <ClInclude Include="SceneMain.h" />
+    <ClInclude Include="SceneTitle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
